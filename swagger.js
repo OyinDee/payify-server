@@ -10,8 +10,12 @@ const options = {
       description: 'API documentation for the Payify student payment system. This helps you understand and test the endpoints.'
     },
     servers: [
-      { url: 'http://localhost:5000', description: 'Local server' },
-      { url: 'https://payify-server.vercel.app', description: 'Production server' }
+      {
+        url: process.env.NODE_ENV === 'production'
+          ? 'https://payify-server.vercel.app'
+          : 'http://localhost:5000',
+        description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Local server'
+      }
     ],
     components: {
       schemas: {
