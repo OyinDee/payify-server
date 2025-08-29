@@ -32,12 +32,12 @@ const userController = require('../controllers/userController');
  *               full_name:
  *                 type: string
  *                 example: John Doe
- *               faculty_id:
- *                 type: integer
- *                 example: 1
- *               department_id:
- *                 type: integer
- *                 example: 2
+ *               faculty_name:
+ *                 type: string
+ *                 example: Engineering
+ *               department_name:
+ *                 type: string
+ *                 example: Computer Engineering
  *               user_type:
  *                 type: string
  *                 example: student
