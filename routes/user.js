@@ -31,7 +31,7 @@ const userController = require('../controllers/userController');
  *                 example: ABC/1234/5678
  *               full_name:
  *                 type: string
- *                 example: John Doe
+ *                 example: Oyindamola Ajala
  *               faculty_name:
  *                 type: string
  *                 example: Engineering

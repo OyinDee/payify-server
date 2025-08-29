@@ -23,7 +23,7 @@ const options = {
             jambReg: { type: 'string', example: 'JAMB123456' },
             email: { type: 'string', example: 'student@fuoye.edu.ng' },
             password: { type: 'string', example: 'hashedpassword' },
-            full_name: { type: 'string', example: 'John Doe' },
+            full_name: { type: 'string', example: 'Oyindamola Ajala' },
             faculty_name: { type: 'string', example: 'Engineering' },
             department_name: { type: 'string', example: 'Computer Engineering' },
             user_type: { type: 'string', example: 'student' },
