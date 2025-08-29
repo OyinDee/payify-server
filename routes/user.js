@@ -41,6 +41,9 @@ const userController = require('../controllers/userController');
  *               user_type:
  *                 type: string
  *                 example: student
+ *               level:
+ *                 type: integer
+ *                 example: 100
  *     responses:
  *       201:
  *         description: Registration successful
