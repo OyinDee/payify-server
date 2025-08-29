@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   matric_number: {
     type: String,
-    unique: true,
-    sparse: true, 
+    sparse: true,
     trim: true
   },
   jambReg: {
@@ -45,10 +44,17 @@ const userSchema = new mongoose.Schema({
     enum: ['student', 'admin'],
     default: 'student'
   },
+  university_id: {
+    type: String,
+    default: 'UNIV-2025-XYZ123'
+  },
   created_at: {
     type: Date,
     default: Date.now
   }
 });
+
+// unique matric number per university
+userSchema.index({ matric_number: 1, university_id: 1 }, { unique: true, sparse: true });
 
 module.exports = mongoose.model('User', userSchema);
