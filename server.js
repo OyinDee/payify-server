@@ -3,8 +3,12 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+
 const app = express();
 app.use(bodyParser.json());
+
+// Swagger docs
+require('./swagger')(app);
 
 const mongoURI = process.env.MONGO_URI;
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -56,7 +56,6 @@ This is a backend server for Payify. It allows students of FUOYE to register and
     "email": "student@gmail.com",
     "password": "yourpassword",
     "jambReg": "JAMB123456",
-    "isFresher": true,
     "full_name": "John Doe",
     "faculty_id": 1,
     "department_id": 2

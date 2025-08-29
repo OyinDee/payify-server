@@ -11,10 +11,6 @@ const userSchema = new mongoose.Schema({
     trim: true,
     default: null
   },
-  isFresher: {
-    type: Boolean,
-    default: false
-  },
   email: {
     type: String,
     required: true,
@@ -36,6 +32,10 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   department_id: {
+    type: Number,
+    required: true
+  },
+  level: {
     type: Number,
     required: true
   },

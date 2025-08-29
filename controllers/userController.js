@@ -15,7 +15,6 @@ exports.register = async (req, res) => {
       password,
       jambReg,
       matric_number,
-      isFresher,
       full_name,
       faculty_id,
       department_id,
