@@ -22,12 +22,14 @@ const { auth } = require('../middleware/auth');
  *               - password
  *               - full_name
  *               - level
- *               - user_type
+ *               - oneOf:
+ *                 - jambReg
+ *                 - matric_number
  *             properties:
  *               email:
  *                 type: string
  *                 example: student@fuoye.edu.ng
- *                 description: Required - School email (@fuoye.edu.ng) for level 200 and above
+ *                 description: Required - Must be school email (@fuoye.edu.ng) for level 200 and above
  *               password:
  *                 type: string
  *                 example: yourpassword
@@ -35,11 +37,11 @@ const { auth } = require('../middleware/auth');
  *               jambReg:
  *                 type: string
  *                 example: JAMB123456
- *                 description: Required for 100 level students if no matric number
+ *                 description: Either JAMB reg or matric number is required (JAMB reg only valid for 100 level)
  *               matric_number:
  *                 type: string
  *                 example: ABC/1234/5678
- *                 description: Required for level 200 and above
+ *                 description: Either JAMB reg or matric number is required (matric number mandatory for 200+ level)
  *               full_name:
  *                 type: string
  *                 example: Oyindamola Ajala
@@ -57,7 +59,8 @@ const { auth } = require('../middleware/auth');
  *               user_type:
  *                 type: string
  *                 example: student
- *                 description: Required - Type of user (student or admin)
+ *                 default: student
+ *                 description: Optional - Type of user (student or admin). Defaults to 'student' if not provided
  *               level:
  *                 type: integer
  *                 example: 100

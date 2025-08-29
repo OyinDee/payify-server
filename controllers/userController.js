@@ -78,24 +78,29 @@ exports.register = async (req, res) => {
     } = req.body;
 
     // Validation for required fields
-    if (!email || !password || !full_name || !level || !user_type) {
+    if (!email || !password || !full_name || !level) {
       return res.status(400).json({ 
-        error: 'Missing required fields: email, password, full name, level, and user type are required.' 
+        error: 'Missing required fields: email, password, full name, and level are required.' 
       });
     }
 
-    // 100 level
+    // Validate identification based on level
+    if (!jambReg && !matric_number) {
+      return res.status(400).json({ 
+        error: 'Either JAMB registration number or matric number is required.' 
+      });
+    }
+
+    // Level specific validations
     if (level === 100) {
-      if (!jambReg && !matric_number) {
-        return res.status(400).json({ error: 'JAMB registration number is required for 100 level if no matric number.' });
-      }
+      // 100 level students can use either JAMB reg or matric number
     } else {
       // 200 level and above
       if (!isSchoolEmail(email)) {
-        return res.status(400).json({ error: 'Only school email (@fuoye.edu.ng) allowed for 200 level and above.' });
+        return res.status(400).json({ error: 'Only school email (@fuoye.edu.ng) allowed for level 200 and above.' });
       }
       if (!matric_number) {
-        return res.status(400).json({ error: 'Matric number is required for 200 level and above.' });
+        return res.status(400).json({ error: 'Matric number is specifically required for level 200 and above, JAMB reg not accepted.' });
       }
     }
 
