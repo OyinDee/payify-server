@@ -77,9 +77,11 @@ exports.register = async (req, res) => {
       level
     } = req.body;
 
-    // Validation
-    if (!email || !password || !full_name) {
-      return res.status(400).json({ error: 'Missing required fields. Email, password, and full name are required.' });
+    // Validation for required fields
+    if (!email || !password || !full_name || !level || !user_type) {
+      return res.status(400).json({ 
+        error: 'Missing required fields: email, password, full name, level, and user type are required.' 
+      });
     }
 
     // 100 level

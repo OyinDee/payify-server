@@ -21,19 +21,47 @@ const { auth } = require('../middleware/auth');
  *               - email
  *               - password
  *               - full_name
+ *               - level
+ *               - user_type
  *             properties:
  *               email:
  *                 type: string
  *                 example: student@fuoye.edu.ng
- *                 description: Required - User's email address
+ *                 description: Required - School email (@fuoye.edu.ng) for level 200 and above
  *               password:
  *                 type: string
  *                 example: yourpassword
  *                 description: Required - User's password
+ *               jambReg:
+ *                 type: string
+ *                 example: JAMB123456
+ *                 description: Required for 100 level students if no matric number
+ *               matric_number:
+ *                 type: string
+ *                 example: ABC/1234/5678
+ *                 description: Required for level 200 and above
  *               full_name:
  *                 type: string
  *                 example: Oyindamola Ajala
  *                 description: Required - User's full name
+ *               faculty_name:
+ *                 type: string
+ *                 example: Engineering
+ *                 nullable: true
+ *                 description: Optional - Can be added later
+ *               department_name:
+ *                 type: string
+ *                 example: Computer Engineering
+ *                 nullable: true
+ *                 description: Optional - Can be added later
+ *               user_type:
+ *                 type: string
+ *                 example: student
+ *                 description: Required - Type of user (student or admin)
+ *               level:
+ *                 type: integer
+ *                 example: 100
+ *                 description: Required - Student's current level
  *     responses:
  *       201:
  *         description: Registration successful
