@@ -32,10 +32,11 @@ This is a backend server for Payify. It allows students of FUOYE to register and
 
 5. **Configure Environment Variables**
    - Open the `.env.example` file in the project folder. Create your own .env, and paste all the content of youur .example into your new .env 
-   - Replace `your_mongodb_connection_string_here` with your actual MongoDB connection string:
+   - Replace USERNAME with the username I sent to you and PASSWORD with the password I sent to you:
      ```
-     MONGO_URI=your_mongodb_connection_string_here
-     PORT=5000
+        MONGO_URI=mongodb+srv://theusername:thepassword@cluster0.pwliybl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+        PORT=5000
+
      ```
 
 6. **Start the Server**
