@@ -37,8 +37,8 @@ exports.register = async (req, res) => {
       if (!isSchoolEmail(email)) {
         return res.status(400).json({ error: 'Only school email (@fuoye.edu.ng) allowed for 200 level and above.' });
       }
-      if (!matric_number && !jambReg) {
-        return res.status(400).json({ error: 'Matric number is required for 200 level and above if no JAMB reg.' });
+      if (!matric_number) {
+        return res.status(400).json({ error: 'Matric number is required for 200 level and above.' });
       }
     }
 
