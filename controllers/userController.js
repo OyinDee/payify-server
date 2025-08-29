@@ -1,6 +1,8 @@
 
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { JWT_SECRET } = require('../middleware/auth');
 
 // Login controller
 exports.login = async (req, res) => {
@@ -35,9 +37,20 @@ exports.login = async (req, res) => {
     const userResponse = user.toObject();
     delete userResponse.password;
 
+    // Generate JWT token
+    const token = jwt.sign(
+      { 
+        userId: user._id,
+        email: user.email,
+        userType: user.user_type
+      },
+      JWT_SECRET
+    );
+
     res.status(200).json({
       message: 'Login successful',
-      user: userResponse
+      user: userResponse,
+      token
     });
   } catch (err) {
     res.status(500).json({ error: 'Server error', details: err.message });
