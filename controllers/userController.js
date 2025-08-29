@@ -2,6 +2,48 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
+// Login controller
+exports.login = async (req, res) => {
+  try {
+    const { identifier, password } = req.body;
+
+    // Validation
+    if (!identifier || !password) {
+      return res.status(400).json({ error: 'Identifier (email/matric number/JAMB reg) and password are required.' });
+    }
+
+    // Find user by email, matric number, or JAMB reg
+    const user = await User.findOne({
+      $or: [
+        { email: identifier },
+        { matric_number: identifier },
+        { jambReg: identifier }
+      ]
+    });
+
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials.' });
+    }
+
+    // Compare password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return res.status(401).json({ error: 'Invalid credentials.' });
+    }
+
+    // Remove password from response
+    const userResponse = user.toObject();
+    delete userResponse.password;
+
+    res.status(200).json({
+      message: 'Login successful',
+      user: userResponse
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error', details: err.message });
+  }
+};
+
 // Helper to check if email is a school email
 function isSchoolEmail(email) {
   return email.endsWith('@fuoye.edu.ng');
