@@ -29,11 +29,13 @@ const userSchema = new mongoose.Schema({
   },
   faculty_name: {
     type: String,
-    required: true
+    required: false,
+    default: null
   },
   department_name: {
     type: String,
-    required: true
+    required: false,
+    default: null
   },
   level: {
     type: Number,

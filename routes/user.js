@@ -17,34 +17,23 @@ const { auth } = require('../middleware/auth');
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *               - full_name
  *             properties:
  *               email:
  *                 type: string
  *                 example: student@fuoye.edu.ng
+ *                 description: Required - User's email address
  *               password:
  *                 type: string
  *                 example: yourpassword
- *               jambReg:
- *                 type: string
- *                 example: JAMB123456
- *               matric_number:
- *                 type: string
- *                 example: ABC/1234/5678
+ *                 description: Required - User's password
  *               full_name:
  *                 type: string
  *                 example: Oyindamola Ajala
- *               faculty_name:
- *                 type: string
- *                 example: Engineering
- *               department_name:
- *                 type: string
- *                 example: Computer Engineering
- *               user_type:
- *                 type: string
- *                 example: student
- *               level:
- *                 type: integer
- *                 example: 100
+ *                 description: Required - User's full name
  *     responses:
  *       201:
  *         description: Registration successful
