@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  faculty_id: {
-    type: Number,
+  faculty_name: {
+    type: String,
     required: true
   },
-  department_id: {
-    type: Number,
+  department_name: {
+    type: String,
     required: true
   },
   level: {

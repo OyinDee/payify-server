@@ -16,14 +16,14 @@ exports.register = async (req, res) => {
       jambReg,
       matric_number,
       full_name,
-      faculty_id,
-      department_id,
+      faculty_name,
+      department_name,
       user_type,
       level
     } = req.body;
 
     // Validation
-    if (!email || !password || !full_name || !faculty_id || !department_id) {
+    if (!email || !password || !full_name || !faculty_name || !department_name) {
       return res.status(400).json({ error: 'Missing required fields.' });
     }
 
@@ -57,8 +57,8 @@ exports.register = async (req, res) => {
       jambReg,
       matric_number,
       full_name,
-      faculty_id,
-      department_id,
+      faculty_name,
+      department_name,
       user_type: user_type || 'student',
       level
     });
