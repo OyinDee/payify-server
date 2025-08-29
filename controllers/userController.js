@@ -18,7 +18,8 @@ exports.register = async (req, res) => {
       full_name,
       faculty_id,
       department_id,
-      user_type
+      user_type,
+      level
     } = req.body;
 
     // Validation
@@ -26,18 +27,18 @@ exports.register = async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields.' });
     }
 
-    // 100 level (fresher)
-    if (isFresher) {
+    // 100 level
+    if (level === 100) {
       if (!jambReg && !matric_number) {
-        return res.status(400).json({ error: 'JAMB registration number is required for freshers if no matric number.' });
+        return res.status(400).json({ error: 'JAMB registration number is required for 100 level if no matric number.' });
       }
     } else {
       // 200 level and above
       if (!isSchoolEmail(email)) {
-        return res.status(400).json({ error: 'Only school email (@fuoye.edu.ng) allowed for non-freshers.' });
+        return res.status(400).json({ error: 'Only school email (@fuoye.edu.ng) allowed for 200 level and above.' });
       }
       if (!matric_number && !jambReg) {
-        return res.status(400).json({ error: 'Matric number is required for non-freshers if no JAMB reg.' });
+        return res.status(400).json({ error: 'Matric number is required for 200 level and above if no JAMB reg.' });
       }
     }
 
@@ -55,11 +56,11 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       jambReg,
       matric_number,
-      isFresher: !!isFresher,
       full_name,
       faculty_id,
       department_id,
-      user_type: user_type || 'student'
+      user_type: user_type || 'student',
+      level
     });
     await user.save();
     res.status(201).json({ message: 'Registration successful', user });
